@@ -8,7 +8,7 @@ Note that you need python with numpy and matplotlib. to install it you can use :
 If you want to use this scripts in a distant computer, make sure you load a graphics environement (ssh -X )
 
 When you want to name axes or giving a title, you can use latex syntaxe (do not forget $ $ if you want math),
-if you use character '\' protect it with a backslash like this '\\'
+if you use character '\' protect it with a backslash like this '\\\\'
 
 ## plot 
 use plot -h to konw all the option avalliable
