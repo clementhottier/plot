@@ -103,6 +103,7 @@ if(args.ylabel != None) :
 if(args.title != None):
   fig.suptitle(args.title)
 
+#save
 if (args.save != None) :
   fig.savefig(args.save)
 else :
