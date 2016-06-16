@@ -39,6 +39,9 @@ parser.add_argument('--ylabel',action='store',type=str,default=None,
 parser.add_argument('--title',action='store',type=str,default=None,
     help='add a title on top of the plot, Default None')
 
+parser.add_argument('--save',action='store',type=str,default=None,
+    help='if you prefer to save the plot instead of display it use "--save name_of_file.pdf"')
+
 
 args=parser.parse_args()
 #--------------#
@@ -100,7 +103,10 @@ if(args.ylabel != None) :
 if(args.title != None):
   fig.suptitle(args.title)
 
-plt.show()
+if (args.save != None) :
+  fig.savefig(args.save)
+else :
+  plt.show()
 #---------#
 
 
