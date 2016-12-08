@@ -25,6 +25,9 @@ parser.add_argument('--type',action='store',type=str,default='line',
 parser.add_argument('-c',action='store',type=int,nargs=3,default=[0,1,2],
     help='column you want to plot (begin at 0), first for x axes and second for yaxes, default : 0 1')
 
+parser.add_argument('-d',action='store',type=str,default=None,
+        help='delimiter of column in the file. by default this is any whitespace')
+
 parser.add_argument('--xlim',action='store',type=float,nargs=2,default=None,
     help='X bound of the plot, default : matplotlib auto')
 
@@ -66,10 +69,24 @@ if (not args.type in type_list) :
   sys.exit('Error : type '+args.type+' not recognize')
 #-----------------#
 
+#-----------------#
+#Cheking delimiter#
+#-----------------#
+#if the data file has .csv extension, the separator is automaticaly set by ','
+#-----------------#
+if (args.d != None) :
+    delim=args.d
+else :
+    if ('.csv' in args.f):
+        delim=','
+    else :
+        delim=None
+#-----------------#
+
 #------------#
 #Reading data#
 #------------#
-data=np.genfromtxt(args.f,usecols=tuple(args.c))
+data=np.genfromtxt(args.f,usecols=tuple(args.c),delimiter=delim)
 #------------#
 
 #---------#
