@@ -107,9 +107,9 @@ elif (args.type == 'histo') :
 
 #bound
 if(args.xlim != None) :
-  ax.xlim(args.xlim)
+  ax.set_xlim(args.xlim)
 if(args.ylim != None) :
-  ax.ylim(args.ylim)
+  ax.set_ylim(args.ylim)
 
 #label
 if(args.xlabel != None) :
