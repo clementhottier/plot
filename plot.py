@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 #writing by Clement Hottier 
 #script in order to plot fast some data file
 
