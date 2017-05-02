@@ -19,7 +19,7 @@ parser.add_argument('-f',action='store',type=str,default=None,
     help='File which you want to plot')
 
 parser.add_argument('--type',action='store',type=str,default='line',
-    help='precise the type of plot you want : line | scatter | histo (1st column contain weight use -1 to avoid weight), default line')
+    help='precise the type of plot you want : line | scatter | imshow | histo (1st column contain weight use -1 to avoid weight), default line')
 
 parser.add_argument('-c',action='store',type=int,nargs=2,default=[0,1],
     help='column you want to plot (begin at 0), first for x axes and second for yaxes, default : 0 1')
@@ -58,7 +58,7 @@ if args.f==None :
 if (not os.path.isfile(args.f)) :
   sys.exit('Error : file '+args.f+' not found')
 
-type_list = ['line','scatter','histo']
+type_list = ['line','scatter','histo','imshow']
 if (not args.type in type_list) :
   sys.exit('Error : type '+args.type+' not recognize')
 #-----------------#
@@ -85,7 +85,8 @@ if (args.type == 'histo' and args.c[0] == -1) :
   data0=np.genfromtxt(args.f,usecols=args.c[1],delimiter=delim)
   data=np.ones((len(data0),2))
   data[:,1]=data0
-
+elif (args.type == 'imshow'):
+    data=np.loadtxt(args.f,delimiter=delim)
 else :
   data=np.genfromtxt(args.f,usecols=tuple(args.c),delimiter=delim)
 #------------#
@@ -104,6 +105,8 @@ elif (args.type == 'scatter') :
   ax.scatter(data[:,0],data[:,1])
 elif (args.type == 'histo') :
   ax.hist(data[:,1],weights=data[:,0])
+elif (args.type == 'imshow') :
+  ax.imshow(data)
 
 #bound
 if(args.xlim != None) :
