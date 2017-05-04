@@ -15,7 +15,7 @@ import numpy as np
 #--------------#
 parser = argparse.ArgumentParser(description=''' Script in order to plot two column from a data file ''')
 
-parser.add_argument('-f',action='store',type=str,default=None,
+parser.add_argument('file',type=str,
     help='File which you want to plot')
 
 parser.add_argument('--type',action='store',type=str,default='line',
@@ -52,11 +52,11 @@ args=parser.parse_args()
 #-----------------#
 #Checking argument#
 #-----------------#
-if args.f==None :
-  sys.exit('Error : no input file')
+# if args.file==None :
+#   sys.exit('Error : no input file')
 
-if (not os.path.isfile(args.f)) :
-  sys.exit('Error : file '+args.f+' not found')
+if (not os.path.isfile(args.file)) :
+  sys.exit('Error : file '+args.file+' not found')
 
 type_list = ['line','scatter','histo','imshow']
 if (not args.type in type_list) :
@@ -71,7 +71,7 @@ if (not args.type in type_list) :
 if (args.d != None) :
     delim=args.d
 else :
-    if ('.csv' in args.f):
+    if ('.csv' in args.file):
         delim=','
     else :
         delim=None
@@ -82,13 +82,13 @@ else :
 #Reading data#
 #------------#
 if (args.type == 'histo' and args.c[0] == -1) : 
-  data0=np.genfromtxt(args.f,usecols=args.c[1],delimiter=delim)
+  data0=np.genfromtxt(args.file,usecols=args.c[1],delimiter=delim)
   data=np.ones((len(data0),2))
   data[:,1]=data0
 elif (args.type == 'imshow'):
-    data=np.loadtxt(args.f,delimiter=delim)
+    data=np.loadtxt(args.file,delimiter=delim)
 else :
-  data=np.genfromtxt(args.f,usecols=tuple(args.c),delimiter=delim)
+  data=np.genfromtxt(args.file,usecols=tuple(args.c),delimiter=delim)
 #------------#
 
 #---------#
