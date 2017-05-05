@@ -58,7 +58,7 @@ args=parser.parse_args()
 if (not os.path.isfile(args.file)) :
   sys.exit('Error : file '+args.file+' not found')
 
-type_list = ['line','scatter','histo','imshow']
+type_list = ['line','scatter','histo','imshow',"imshowT"]
 if (not args.type in type_list) :
   sys.exit('Error : type '+args.type+' not recognize')
 #-----------------#
@@ -85,7 +85,7 @@ if (args.type == 'histo' and args.c[0] == -1) :
   data0=np.genfromtxt(args.file,usecols=args.c[1],delimiter=delim)
   data=np.ones((len(data0),2))
   data[:,1]=data0
-elif (args.type == 'imshow'):
+elif (args.type == 'imshow' | args.type =='imshowT'):
     data=np.loadtxt(args.file,delimiter=delim)
 else :
   data=np.genfromtxt(args.file,usecols=tuple(args.c),delimiter=delim)
@@ -107,6 +107,8 @@ elif (args.type == 'histo') :
   ax.hist(data[:,1],weights=data[:,0])
 elif (args.type == 'imshow') :
   ax.imshow(data)
+elif (args.type == 'imshowT') :
+  ax.imshow(data.T)
 
 #bound
 if(args.xlim != None) :
