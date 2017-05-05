@@ -85,7 +85,7 @@ if (args.type == 'histo' and args.c[0] == -1) :
   data0=np.genfromtxt(args.file,usecols=args.c[1],delimiter=delim)
   data=np.ones((len(data0),2))
   data[:,1]=data0
-elif (args.type == 'imshow' | args.type =='imshowT'):
+elif (args.type == 'imshow') | (args.type =='imshowT'):
     data=np.loadtxt(args.file,delimiter=delim)
 else :
   data=np.genfromtxt(args.file,usecols=tuple(args.c),delimiter=delim)
